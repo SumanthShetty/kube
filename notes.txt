@@ -1,7 +1,16 @@
 https://kubernetes.io/docs/home/
-
+Create: 
+    kubectl create -f demo.yaml
+Apply: 
+    kubectl apply -f demo.yaml #This will detect the changes and apply it. 
 Pods: 
     In Kubernetes, a pod is the smallest deployable unit. It's a group of one or more containers (like Docker containers) that are always scheduled to run together on the same node and share the same network namespace.
     kubectl run <pod-name> --image=<image-name> # used to create a Pod
     kubectl run demo --image=nginx --dry-run=client -o yaml #used to generate a yaml 
+    kubectl run demo --image=nginx --dry-run=client -o yaml > pod.yaml # to get the tempate moved to a file
     kubectl run -h | less # to leverage kubectl --help 
+    kubectl get pods #deatils of all the pods
+    kubectl get pods -o wide # Additional deatils
+    kubectl describe pod <pod name> # gives the whole discription
+    #interactions with pods
+    kubectl exec -it nginx -- /bin/bash #execution with pods interaction
