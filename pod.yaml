@@ -1,13 +1,10 @@
 apiVersion: v1
 kind: Pod
-metadata:
-  name: redis
-  lables:
-    app: redis
+metadata:  
+  labels:
+    run: demo
+  name: demo
 spec:
   containers:
-  - name: redis
-    image: redis:latest
-    ports:
-    - containerPort: 6379
-   
+  - image: nginx
+    name: demo
