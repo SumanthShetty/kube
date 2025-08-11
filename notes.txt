@@ -21,3 +21,10 @@ Deployments:
     kubectl edit deployment test
     kubectl delete deployment test
     kubectl create deployment test --image=httpd --replicas=3 --dry-run=client -o yaml > deployment.yaml
+
+Namespaces:
+    kubectl get namespace
+    kubectl edit namespace sumanth
+    kubectl delete namespace sumanth
+    kubectl create namespace sumanth --dry-run=client -o yaml > namespace.yaml
+    
