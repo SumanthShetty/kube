@@ -14,3 +14,10 @@ Pods:
     kubectl describe pod <pod name> # gives the whole discription
     #interactions with pods
     kubectl exec -it nginx -- /bin/bash #execution with pods interaction
+
+Deployments: 
+    kubectl create deployment test --image=nginx --replicas=3
+    kubectl get deployment
+    kubectl edit deployment test
+    kubectl delete deployment test
+    kubectl create deployment test --image=httpd --replicas=3 --dry-run=client -o yaml > deployment.yaml
