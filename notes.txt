@@ -27,4 +27,8 @@ Namespaces:
     kubectl edit namespace sumanth
     kubectl delete namespace sumanth
     kubectl create namespace sumanth --dry-run=client -o yaml > namespace.yaml
-    
+    kubectl run sumanth-test-ns --image=nginx --namespace=sumanth # creating pod in the specific namespace
+    kubectl get pods -n sumanth # Getting the pod infop from the namespace in which the pod was created 
+
+Network:
+    kubectl port-forward pods/mealie 9000 #port forwarding/mapping 
