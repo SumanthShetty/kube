@@ -1,4 +1,4 @@
-https://kubernetes.io/docs/home/
+https://kubernetes.io/docs/home/ 
 Create: 
     kubectl create -f demo.yaml
 Apply: 
@@ -30,5 +30,18 @@ Namespaces:
     kubectl run sumanth-test-ns --image=nginx --namespace=sumanth # creating pod in the specific namespace
     kubectl get pods -n sumanth # Getting the pod infop from the namespace in which the pod was created 
 
-Network:
-    kubectl port-forward pods/mealie 9000 #port forwarding/mapping 
+Network/Services
+    kubectl port-forward pods/mealie 9000 #port forwarding/mapping  eg: kubectl port-forward pods/mealie-5b64476b9d-wvqs2 8080:80 -n sumanth
+    kubectl port-forward services/mealie 9000 #poer forarding can be done at service level
+    kubectl expose deployment mealie --port 9000
+    kubectl get services -o wide 
+   
+   Services:
+    Cluster IP
+    Node port
+    Load Balancer
+    Load Balancer is not supported in local minikub enviroment external IP comes will be in pending state
+    so we can use minikub
+    minikube service mealie-service -n sumanth
+    or
+    minikube service mealie-service -n sumanth --url
