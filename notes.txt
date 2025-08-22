@@ -1,4 +1,7 @@
 https://kubernetes.io/docs/home/ 
+Commands: 
+    kubectl exec -it <pod_name> --bash #to get into pod
+    kubectl exec -it sumanth -c busybox -- sh  # if you have multiple containers in a pod and you want to loginto a specific one we use "-c"
 Create: 
     kubectl create -f demo.yaml
 Apply: 
@@ -45,3 +48,29 @@ Network/Services
     minikube service mealie-service -n sumanth
     or
     minikube service mealie-service -n sumanth --url
+
+Volumes: 
+   pod_epherestorage.yaml 
+
+            containers:
+            - image: nginx
+                name: nginx
+                volumeMounts:
+                - mountPath: /sumanth
+                    name: sumanth-volume
+            - image: busybox
+                name: busybox
+                command: ["bin/sh", "-c"]
+                args: ["sleep 1000"]
+                volumeMounts:
+                - mountPath: /sumanth_busybox
+                    name: sumanth-volume
+            volumes:
+                - name: sumanth-volume
+                emptyDir:
+                    sizeLimit: 50Mi  
+    by this above command we are sharing common volume "sumamth-volume" among two containers. 
+    If you are actily with in a container A and do some addition to the sahred volume part it will refelect in container B
+    As this is emptyDir which is a ephemeral storage soon the pod is stoped the stogae would be lost. 
+
+ 
