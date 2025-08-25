@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: sumanth
+  name: sumanth
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+      - mountPath: /sumanth
+        name: sumanth-persistent
+  - image: busybox
+    name: busybox
+    command: ["bin/sh", "-c"]
+    args: ["sleep 1000"]
+    volumeMounts:
+      - mountPath: /sumanth_busybox
+        name: sumanth-persistent
+  volumes:
+    - name: sumanth-persistent
+      persistentVolumeClaim:
+        claimName: sumanth-persistent  
