@@ -1,6 +1,6 @@
 https://kubernetes.io/docs/home/ 
 Commands: 
-    kubectl exec -it <pod_name> --bash #to get into pod
+    kubectl exec -it <pod_name> -- bash #to get into pod
     kubectl exec -it sumanth -c busybox -- sh  # if you have multiple containers in a pod and you want to loginto a specific one we use "-c"
 Create: 
     kubectl create -f demo.yaml
@@ -73,4 +73,15 @@ Volumes:
     If you are actily with in a container A and do some addition to the sahred volume part it will refelect in container B
     As this is emptyDir which is a ephemeral storage soon the pod is stoped the stogae would be lost. 
 
+    - persistentvolume
+        kubectl get persistentvolumes -n sumanth #to get the volume present in namespace "sumanth"
+        kubectl get pvc  # get persistent volume claimsss
  
+    - storageclass
+        kubectl get storageclasses.storage.k8s.io #to get storgae class
+    
+    - Access Modes 
+        RWO - ReadWriteOnce #the volume can be mounted as read-write by a single node. 
+        ROX - ReadOnlyMany #the volume can be mounted as read-only by many nodes.
+        RWX - ReadWriteMany #the volume can be mounted as read-write by many nodes.
+        RWOP - ReadWriteOncePod #the volume can be mounted as read-write by a single Pod.
